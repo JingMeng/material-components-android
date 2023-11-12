@@ -28,7 +28,9 @@ import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatDialog;
+
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,6 +38,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager.LayoutParams;
 import android.widget.FrameLayout;
+
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,6 +51,7 @@ import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+
 import com.google.android.material.internal.EdgeToEdgeUtils;
 import com.google.android.material.internal.ViewUtils;
 import com.google.android.material.motion.MaterialBackOrchestrator;
@@ -86,7 +90,8 @@ public class BottomSheetDialog extends AppCompatDialog {
   private boolean canceledOnTouchOutsideSet;
   private EdgeToEdgeCallback edgeToEdgeCallback;
   private boolean edgeToEdgeEnabled;
-  @Nullable private MaterialBackOrchestrator backOrchestrator;
+  @Nullable
+  private MaterialBackOrchestrator backOrchestrator;
 
   public BottomSheetDialog(@NonNull Context context) {
     this(context, 0);
@@ -94,7 +99,7 @@ public class BottomSheetDialog extends AppCompatDialog {
     edgeToEdgeEnabled =
         getContext()
             .getTheme()
-            .obtainStyledAttributes(new int[] {R.attr.enableEdgeToEdge})
+            .obtainStyledAttributes(new int[]{R.attr.enableEdgeToEdge})
             .getBoolean(0, false);
   }
 
@@ -107,7 +112,7 @@ public class BottomSheetDialog extends AppCompatDialog {
     edgeToEdgeEnabled =
         getContext()
             .getTheme()
-            .obtainStyledAttributes(new int[] {R.attr.enableEdgeToEdge})
+            .obtainStyledAttributes(new int[]{R.attr.enableEdgeToEdge})
             .getBoolean(0, false);
   }
 
@@ -120,7 +125,7 @@ public class BottomSheetDialog extends AppCompatDialog {
     edgeToEdgeEnabled =
         getContext()
             .getTheme()
-            .obtainStyledAttributes(new int[] {R.attr.enableEdgeToEdge})
+            .obtainStyledAttributes(new int[]{R.attr.enableEdgeToEdge})
             .getBoolean(0, false);
   }
 
@@ -282,12 +287,16 @@ public class BottomSheetDialog extends AppCompatDialog {
     return dismissWithAnimation;
   }
 
-  /** Returns if edge to edge behavior is enabled for this dialog. */
+  /**
+   * Returns if edge to edge behavior is enabled for this dialog.
+   */
   public boolean getEdgeToEdgeEnabled() {
     return edgeToEdgeEnabled;
   }
 
-  /** Creates the container layout which must exist to find the behavior */
+  /**
+   * Creates the container layout which must exist to find the behavior
+   */
   private FrameLayout ensureContainerAndBehavior() {
     if (container == null) {
       container =
@@ -401,7 +410,7 @@ public class BottomSheetDialog extends AppCompatDialog {
   boolean shouldWindowCloseOnTouchOutside() {
     if (!canceledOnTouchOutsideSet) {
       TypedArray a =
-          getContext().obtainStyledAttributes(new int[] {android.R.attr.windowCloseOnTouchOutside});
+          getContext().obtainStyledAttributes(new int[]{android.R.attr.windowCloseOnTouchOutside});
       canceledOnTouchOutside = a.getBoolean(0, true);
       a.recycle();
       canceledOnTouchOutsideSet = true;
@@ -439,15 +448,19 @@ public class BottomSheetDialog extends AppCompatDialog {
         }
 
         @Override
-        public void onSlide(@NonNull View bottomSheet, float slideOffset) {}
+        public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+        }
       };
 
   private static class EdgeToEdgeCallback extends BottomSheetBehavior.BottomSheetCallback {
 
-    @Nullable private final Boolean lightBottomSheet;
-    @NonNull private final WindowInsetsCompat insetsCompat;
+    @Nullable
+    private final Boolean lightBottomSheet;
+    @NonNull
+    private final WindowInsetsCompat insetsCompat;
 
-    @Nullable private Window window;
+    @Nullable
+    private Window window;
     private boolean lightStatusBar;
 
     private EdgeToEdgeCallback(
@@ -536,6 +549,8 @@ public class BottomSheetDialog extends AppCompatDialog {
   }
 
   /**
+   * 状态栏的观察点
+   *
    * @deprecated use {@link EdgeToEdgeUtils#setLightStatusBar(Window, boolean)} instead
    */
   @Deprecated
