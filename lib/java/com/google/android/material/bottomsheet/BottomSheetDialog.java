@@ -80,6 +80,11 @@ public class BottomSheetDialog extends AppCompatDialog {
   private BottomSheetBehavior<FrameLayout> behavior;
 
   private FrameLayout container;
+
+  public FrameLayout getContainer() {
+    return container;
+  }
+
   private CoordinatorLayout coordinator;
   private FrameLayout bottomSheet;
 
@@ -299,12 +304,14 @@ public class BottomSheetDialog extends AppCompatDialog {
    */
   private FrameLayout ensureContainerAndBehavior() {
     if (container == null) {
+      //FrameLayout 是一个shape 的操作
       container =
           (FrameLayout) View.inflate(getContext(), R.layout.design_bottom_sheet_dialog, null);
 
       coordinator = (CoordinatorLayout) container.findViewById(R.id.coordinator);
       bottomSheet = (FrameLayout) container.findViewById(R.id.design_bottom_sheet);
 
+      //这个地方进一步处理了
       behavior = BottomSheetBehavior.from(bottomSheet);
       behavior.addBottomSheetCallback(bottomSheetCallback);
       behavior.setHideable(cancelable);
@@ -313,6 +320,18 @@ public class BottomSheetDialog extends AppCompatDialog {
     return container;
   }
 
+  /**
+   * 1. 返回的是 container
+   * <p>
+   * 2. 数据被记载到了 bottomSheet ，也就是那个shape应用到谁身上的操作
+   * <p>
+   * 3.
+   *
+   * @param layoutResId
+   * @param view
+   * @param params
+   * @return
+   */
   private View wrapInBottomSheet(
       int layoutResId, @Nullable View view, @Nullable ViewGroup.LayoutParams params) {
     ensureContainerAndBehavior();
@@ -344,6 +363,7 @@ public class BottomSheetDialog extends AppCompatDialog {
 
     bottomSheet.removeAllViews();
     if (params == null) {
+      //使用的是这个分支，因为从代码看就是这个分支
       bottomSheet.addView(view);
     } else {
       bottomSheet.addView(view, params);
