@@ -38,6 +38,7 @@
     app:borderWidth="0dp"
     app:elevation="0dp"
     app:maxImageSize="86dp"
+    app:pressedTranslationZ="0dp"
     app:srcCompat="@drawable/floatingactionbutton"
     app:tint="@null" />
 </FrameLayout>

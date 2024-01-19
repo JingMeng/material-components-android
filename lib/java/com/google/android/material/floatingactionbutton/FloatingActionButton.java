@@ -233,8 +233,7 @@ public class FloatingActionButton extends VisibilityAwareImageButton
     final float elevation = a.getDimension(R.styleable.FloatingActionButton_elevation, 0f);
     final float hoveredFocusedTranslationZ =
         a.getDimension(R.styleable.FloatingActionButton_hoveredFocusedTranslationZ, 0f);
-    final float pressedTranslationZ =
-        a.getDimension(R.styleable.FloatingActionButton_pressedTranslationZ, 0f);
+    final float pressedTranslationZ = a.getDimension(R.styleable.FloatingActionButton_pressedTranslationZ, 0f);
     compatPadding = a.getBoolean(R.styleable.FloatingActionButton_useCompatPadding, false);
     int minTouchTargetSize =
         getResources().getDimensionPixelSize(R.dimen.mtrl_fab_min_touch_target);
@@ -268,6 +267,7 @@ public class FloatingActionButton extends VisibilityAwareImageButton
     getImpl().setMinTouchTargetSize(minTouchTargetSize);
     getImpl().setElevation(elevation);
     getImpl().setHoveredFocusedTranslationZ(hoveredFocusedTranslationZ);
+    Log.i("FloatingActionButtonImpl","----------WWWWWWWWWWWWWWWW==========="+pressedTranslationZ);
     getImpl().setPressedTranslationZ(pressedTranslationZ);
     getImpl().setShowMotionSpec(showMotionSpec);
     getImpl().setHideMotionSpec(hideMotionSpec);
