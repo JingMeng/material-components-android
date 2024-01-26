@@ -414,16 +414,16 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
         context.getResources().getDimensionPixelSize(R.dimen.mtrl_min_touch_target_size);
 
     TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.BottomSheetBehavior_Layout);
-    if (a.hasValue(R.styleable.BottomSheetBehavior_Layout_backgroundTint)) {
-      this.backgroundTint = MaterialResources.getColorStateList(
-          context, a, R.styleable.BottomSheetBehavior_Layout_backgroundTint);
-    }
+//    if (a.hasValue(R.styleable.BottomSheetBehavior_Layout_backgroundTint)) {
+//      this.backgroundTint = MaterialResources.getColorStateList(
+//          context, a, R.styleable.BottomSheetBehavior_Layout_backgroundTint);
+//    }
     //使用这个属性来调整数据的
-    if (a.hasValue(R.styleable.BottomSheetBehavior_Layout_shapeAppearance)) {
-      this.shapeAppearanceModelDefault =
-          ShapeAppearanceModel.builder(context, attrs, R.attr.bottomSheetStyle, DEF_STYLE_RES)
-              .build();
-    }
+//    if (a.hasValue(R.styleable.BottomSheetBehavior_Layout_shapeAppearance)) {
+//      this.shapeAppearanceModelDefault =
+//          ShapeAppearanceModel.builder(context, attrs, R.attr.bottomSheetStyle, DEF_STYLE_RES)
+//              .build();
+//    }
     createMaterialShapeDrawableIfNeeded(context);
     createShapeValueAnimator();
 
@@ -614,7 +614,9 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
       bottomContainerBackHelper = new MaterialBottomContainerBackHelper(child);
       // Only set MaterialShapeDrawable as background if shapeTheming is enabled, otherwise will
       // default to android:background declared in styles or layout.
+      Log.i("BottomSheetBehavior",(materialShapeDrawable != null)+"-------onLayoutChild------"+(backgroundTint != null));
       if (materialShapeDrawable != null) {
+        Log.i("BottomSheetBehavior","======onLayoutChild========"+materialShapeDrawable.getFillColor());
         ViewCompat.setBackground(child, materialShapeDrawable);
         // Use elevation attr if set on bottomsheet; otherwise, use elevation of child view.
         materialShapeDrawable.setElevation(
@@ -1756,7 +1758,11 @@ public class BottomSheetBehavior<V extends View> extends CoordinatorLayout.Behav
       // If the tint isn't set, use the theme default background color.
       TypedValue defaultColor = new TypedValue();
       context.getTheme().resolveAttribute(android.R.attr.colorBackground, defaultColor, true);
-      materialShapeDrawable.setTint(defaultColor.data);
+
+      String hexColor = String.format("#%06X", 0xFFFFFF & defaultColor.data);
+
+      Log.i("BottomSheetBehavior", "========createMaterialShapeDrawableIfNeeded====hexColor===========" + hexColor);
+//      materialShapeDrawable.setTint(defaultColor.data);
     }
   }
 

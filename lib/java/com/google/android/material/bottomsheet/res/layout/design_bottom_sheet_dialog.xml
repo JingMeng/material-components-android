@@ -38,7 +38,7 @@
         android:soundEffectsEnabled="false"
         tools:ignore="UnusedAttribute"/>
 
-    <FrameLayout
+    <com.google.android.material.bottomsheet.CusFrameLayout
         android:id="@+id/design_bottom_sheet"
         style="?attr/bottomSheetStyle"
         android:layout_width="match_parent"

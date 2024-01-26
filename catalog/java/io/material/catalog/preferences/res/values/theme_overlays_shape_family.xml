@@ -24,5 +24,32 @@
     <item name="shapeCornerFamily">cut</item>
   </style>
 
+  <style name="MaterialAlertDialog.Rounded172" parent="@style/ThemeOverlay.MaterialComponents.BottomSheetDialog">
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper172</item>
+  </style>
+
+  <style name="bottomSheetStyleWrapper172" parent="Widget.Design.BottomSheet.Modal">
+
+<!--    <color name="holo_red_light">#ffff4444</color>-->
+    <!--        这个地方只要设置了，就会没有背景了-->
+    <item name="android:background">@android:color/holo_red_light</item>
+<!--    <item name="shapeAppearance">@style/CustomShape172</item>-->
+<!--    <item name="shapeAppearanceOverlay">@style/CustomShapeOverlay172</item>-->
+
+        <item name="shapeAppearance">@null</item>
+        <item name="shapeAppearanceOverlay">@null</item>
+  </style>
+
+  <style name="CustomShape172">
+    <item name="cornerSize">25dp</item>
+    <item name="cornerFamily">rounded</item>
+  </style>
+
+  <style name="CustomShapeOverlay172">
+    <item name="cornerSize">50dp</item>
+  </style>
+
+
 </resources>
 
