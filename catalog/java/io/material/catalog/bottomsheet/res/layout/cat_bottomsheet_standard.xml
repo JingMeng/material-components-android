@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2018 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,17 +13,17 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bottom_drawer"
-    style="@style/Widget.Material3.BottomSheet"
-    android:layout_width="match_parent"
-    android:layout_height="400dp"
-    app:behavior_hideable="false"
-    app:behavior_peekHeight="200dp"
-    app:layout_behavior="@string/bottom_sheet_behavior">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/bottom_drawer"
+  style="@style/Widget.Material3.BottomSheet"
+  android:layout_width="match_parent"
+  android:layout_height="400dp"
 
+  app:behavior_peekHeight="200dp"
+  app:behavior_hideable="true"
+  app:layout_behavior="@string/bottom_sheet_behavior">
+<!--  app:behavior_hideable="false"-->
   <include layout="@layout/cat_bottomsheet_standard_content" />
 
 </RelativeLayout>

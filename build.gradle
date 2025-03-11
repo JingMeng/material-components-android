@@ -1,5 +1,6 @@
 buildscript {
   repositories {
+    maven { url "https://jitpack.io" }
     google()
     mavenCentral()
   }
@@ -10,6 +11,7 @@ buildscript {
 
 allprojects {
   repositories {
+    maven { url "https://jitpack.io" }
     google()
     mavenCentral()
     mavenLocal()
@@ -33,7 +35,7 @@ ext {
     experimental                 : '1.0.0',
     fragment                     : '1.2.5',
     lifecycle                    : '2.0.0',
-    recyclerView                 : '1.0.0',
+    recyclerView                 : '1.2.1',
     recyclerViewSelection        : '1.0.0',
     resourceInspectionAnnotation : '1.0.1',
     resourceInspectionProcessor  : '1.0.1',

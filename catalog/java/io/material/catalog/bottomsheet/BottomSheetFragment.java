@@ -20,6 +20,7 @@ package io.material.catalog.bottomsheet;
 import io.material.catalog.R;
 
 import androidx.fragment.app.Fragment;
+
 import dagger.Provides;
 import dagger.android.ContributesAndroidInjector;
 import dagger.multibindings.IntoSet;
@@ -28,10 +29,16 @@ import io.material.catalog.application.scope.FragmentScope;
 import io.material.catalog.feature.Demo;
 import io.material.catalog.feature.DemoLandingFragment;
 import io.material.catalog.feature.FeatureDemo;
+
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * 这个事主要的，下面的是次要的
+ */
 
-/** A landing fragment that links to BottomSheet demos for the Catalog app. */
+/**
+ * A landing fragment that links to BottomSheet demos for the Catalog app.
+ */
 public class BottomSheetFragment extends DemoLandingFragment {
 
   @Override
@@ -67,7 +74,9 @@ public class BottomSheetFragment extends DemoLandingFragment {
     return additionalDemos;
   }
 
-  /** The Dagger module for {@link BottomSheetMainDemoFragment} dependencies. */
+  /**
+   * The Dagger module for {@link BottomSheetMainDemoFragment} dependencies.
+   */
   @dagger.Module
   public abstract static class Module {
 

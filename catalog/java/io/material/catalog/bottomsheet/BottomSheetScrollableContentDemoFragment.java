@@ -23,14 +23,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.WindowInsetsCompat;
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.internal.ViewUtils;
+
 import io.material.catalog.feature.DemoFragment;
 import io.material.catalog.windowpreferences.WindowPreferencesManager;
 
@@ -53,7 +56,9 @@ public class BottomSheetScrollableContentDemoFragment extends DemoFragment {
     return R.layout.cat_bottomsheet_scrollable_content_fragment;
   }
 
-  /** A custom bottom sheet dialog fragment. */
+  /**
+   * A custom bottom sheet dialog fragment.
+   */
   @SuppressWarnings("RestrictTo")
   public static class BottomSheet extends BottomSheetDialogFragment {
     @NonNull
@@ -63,11 +68,27 @@ public class BottomSheetScrollableContentDemoFragment extends DemoFragment {
       BottomSheetDialog bottomSheetDialog =
           new BottomSheetDialog(
               getContext(), R.style.ThemeOverlay_Catalog_BottomSheetDialog_Scrollable);
+      //这个很强大，一句话就是沉浸全屏了
       new WindowPreferencesManager(requireContext()).applyEdgeToEdgePreference(bottomSheetDialog.getWindow());
+
       bottomSheetDialog.setContentView(R.layout.cat_bottomsheet_scrollable_content);
       View bottomSheetInternal = bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
-      BottomSheetBehavior.from(bottomSheetInternal).setPeekHeight(400);
 
+      /**
+       * 这个是默认展示的高度，因为没有show所以不展示
+       * BottomSheetMainDemoFragment 里面的view就是直接展示出来了，因为毕竟add上了才能被我们看见ma
+       *
+       * 其次这个属性受到   app:behavior_hideable="true" 影响，就是允许这个最小之后还是否允许向下滑动
+       * 针对view就是最小展示高度
+       *
+       * 这个属性也会影响dialog
+       */
+      BottomSheetBehavior<View> sheetBehavior = BottomSheetBehavior.from(bottomSheetInternal);
+      sheetBehavior.setPeekHeight(400);
+
+//      sheetBehavior.setHideable(false);
+
+      //这个就是简单的
       View bottomSheetContent = bottomSheetInternal.findViewById(R.id.bottom_drawer_2);
       ViewUtils.doOnApplyWindowInsets(bottomSheetContent, (v, insets, initialPadding) -> {
         // Add the inset in the inner NestedScrollView instead to make the edge-to-edge behavior

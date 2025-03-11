@@ -28,6 +28,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.activity.BackEventCompat;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.LayoutRes;
@@ -35,14 +36,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.materialswitch.MaterialSwitch;
+
 import io.material.catalog.feature.DemoFragment;
 import io.material.catalog.windowpreferences.WindowPreferencesManager;
 
-/** A fragment that displays the main BottomSheet demo for the Catalog app. */
+/**
+ * A fragment that displays the main BottomSheet demo for the Catalog app.
+ */
 public class BottomSheetMainDemoFragment extends DemoFragment {
 
   private final OnBackPressedCallback persistentBottomSheetBackCallback =
@@ -98,6 +103,7 @@ public class BottomSheetMainDemoFragment extends DemoFragment {
     bottomSheetDialog.setContentView(R.layout.cat_bottomsheet_content);
     // Opt in to perform swipe to dismiss animation when dismissing bottom sheet dialog.
     bottomSheetDialog.setDismissWithAnimation(true);
+    //全屏处理
     windowPreferencesManager.applyEdgeToEdgePreference(bottomSheetDialog.getWindow());
     View bottomSheetInternal = bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
     BottomSheetBehavior.from(bottomSheetInternal).setPeekHeight(peekHeightPx);
@@ -149,6 +155,7 @@ public class BottomSheetMainDemoFragment extends DemoFragment {
     BottomSheetBehavior.from(bottomSheetInternal)
         .addBottomSheetCallback(createBottomSheetCallback(dialogText));
     TextView bottomSheetText = view.findViewById(R.id.cat_persistent_bottomsheet_state);
+    //这个地方是操作的一个view
     View bottomSheetPersistent = view.findViewById(R.id.bottom_drawer);
     persistentBottomSheetBehavior = BottomSheetBehavior.from(bottomSheetPersistent);
     persistentBottomSheetBehavior.addBottomSheetCallback(
@@ -199,23 +206,38 @@ public class BottomSheetMainDemoFragment extends DemoFragment {
     return getWindowHeight() * 3 / 5;
   }
 
+
+  /**
+   * 名字写的就很那个，调整高度
+   */
   private void updateBottomSheetHeights() {
     View view = getView();
     View bottomSheetChildView = view.findViewById(R.id.bottom_drawer);
     ViewGroup.LayoutParams params = bottomSheetChildView.getLayoutParams();
     BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetChildView);
     bottomSheetBehavior.setUpdateImportantForAccessibilityOnSiblings(fullScreenSwitch.isChecked());
+    //-----上面和下面是两个view--------
+
     View modalBottomSheetChildView = bottomSheetDialog.findViewById(R.id.bottom_drawer_2);
     ViewGroup.LayoutParams layoutParams = modalBottomSheetChildView.getLayoutParams();
     BottomSheetBehavior<FrameLayout> modalBottomSheetBehavior = bottomSheetDialog.getBehavior();
+
+
     boolean fitToContents = true;
     float halfExpandedRatio = 0.5f;
     int windowHeight = getWindowHeight();
     if (params != null && layoutParams != null) {
       if (fullScreenSwitch.isEnabled() && fullScreenSwitch.isChecked()) {
         params.height = windowHeight;
+        /**
+         *
+         * 还是gpt说的那个操作，动态了修改了这个高度，解决了因为滑动向上导致的底部出现白色透明的问题
+         *  白色透明是 因为  fitToContents 的原因
+         *
+         */
         layoutParams.height = windowHeight;
         fitToContents = false;
+        //不能是0 不能是 1
         halfExpandedRatio = 0.7f;
       } else if (restrictExpansionSwitch.isEnabled() && restrictExpansionSwitch.isChecked()) {
         params.height = peekHeightPx;
@@ -225,10 +247,11 @@ public class BottomSheetMainDemoFragment extends DemoFragment {
         layoutParams.height = getBottomSheetDialogDefaultHeight();
       }
       bottomSheetChildView.setLayoutParams(params);
-      modalBottomSheetChildView.setLayoutParams(layoutParams);
       bottomSheetBehavior.setFitToContents(fitToContents);
-      modalBottomSheetBehavior.setFitToContents(fitToContents);
       bottomSheetBehavior.setHalfExpandedRatio(halfExpandedRatio);
+      //
+      modalBottomSheetChildView.setLayoutParams(layoutParams);
+      modalBottomSheetBehavior.setFitToContents(fitToContents);
       modalBottomSheetBehavior.setHalfExpandedRatio(halfExpandedRatio);
     }
   }
@@ -256,6 +279,8 @@ public class BottomSheetMainDemoFragment extends DemoFragment {
     return R.layout.cat_bottomsheet_standard;
   }
 
+
+  //就是一个动态监听，没有什么传奇的
   private BottomSheetCallback createBottomSheetCallback(@NonNull TextView text) {
     return new BottomSheetCallback() {
       @Override
@@ -264,10 +289,11 @@ public class BottomSheetMainDemoFragment extends DemoFragment {
       }
 
       @Override
-      public void onSlide(@NonNull View bottomSheet, float slideOffset) {}
+      public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+      }
     };
   }
-
+  //就是一个动态监听，没有什么传奇的
   private void updateStateTextView(@NonNull View bottomSheet, @NonNull TextView text, int state) {
     switch (state) {
       case BottomSheetBehavior.STATE_DRAGGING:
@@ -292,6 +318,7 @@ public class BottomSheetMainDemoFragment extends DemoFragment {
     }
   }
 
+  //---------回调监听，暂时没有解析 todo
   private void setupBackHandling(BottomSheetBehavior<View> behavior) {
     requireActivity()
         .getOnBackPressedDispatcher()
@@ -304,7 +331,8 @@ public class BottomSheetMainDemoFragment extends DemoFragment {
           }
 
           @Override
-          public void onSlide(@NonNull View bottomSheet, float slideOffset) {}
+          public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+          }
         });
   }
 
