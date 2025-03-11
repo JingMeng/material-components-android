@@ -13,7 +13,7 @@ Design Support Library.
 ## Getting Started
 
 For information on how to get started with Material Components for Android,
-take a look at our [Getting Started](docs/getting-started.md) guide.
+take a look at our [Getting Started](docs/getting-started.md) guide. =
 
 ## Submitting Bugs or Feature Requests
 

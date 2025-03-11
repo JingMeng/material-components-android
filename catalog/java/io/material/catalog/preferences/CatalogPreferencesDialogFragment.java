@@ -27,17 +27,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
+
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasAndroidInjector;
 import dagger.android.support.AndroidSupportInjection;
 import io.material.catalog.preferences.CatalogPreference.Option;
 import io.material.catalog.windowpreferences.WindowPreferencesManager;
+
 import javax.inject.Inject;
 
 /**
@@ -48,7 +53,8 @@ public class CatalogPreferencesDialogFragment extends BottomSheetDialogFragment
   @Inject
   BaseCatalogPreferences preferences;
 
-  @Inject DispatchingAndroidInjector<Object> childFragmentInjector;
+  @Inject
+  DispatchingAndroidInjector<Object> childFragmentInjector;
 
   private final SparseIntArray buttonIdToOptionId = new SparseIntArray();
 
@@ -57,6 +63,8 @@ public class CatalogPreferencesDialogFragment extends BottomSheetDialogFragment
   public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
     Dialog dialog = super.onCreateDialog(savedInstanceState);
     new WindowPreferencesManager(requireContext()).applyEdgeToEdgePreference(dialog.getWindow());
+    setStyle(STYLE_NORMAL, R.style.MaterialAlertDialog_Rounded172);
+//    dialog.getWindow().findViewById(com.google.android.material.R.id.design_bottom_sheet).invalidate();
     return dialog;
   }
 
@@ -123,7 +131,7 @@ public class CatalogPreferencesDialogFragment extends BottomSheetDialogFragment
     MaterialButton button =
         (MaterialButton) layoutInflater.inflate(
             R.layout.mtrl_preferences_dialog_option_button, rootView, false);
-    int buttonId = View.generateViewId();
+    int buttonId = ViewCompat.generateViewId();
     buttonIdToOptionId.append(buttonId, option.id);
     button.setId(buttonId);
     button.setIconResource(option.icon);

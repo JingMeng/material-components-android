@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2017 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +15,30 @@
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <FrameLayout
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" />
+
+  <!--  com.google.android.material.floatingactionbutton.FloatingActionButton-->
+  <!--  ImageButton    使用这个是没有问题的 ，上面的就会出错，也就是说 ImageButton  没有触摸的操作 -->
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|right"
+    android:layout_marginRight="20dp"
+    android:layout_marginBottom="20dp"
+    android:background="@null"
+    android:backgroundTint="@android:color/transparent"
+    android:contentDescription="@string/cat_navigation_rail_fab_content_desc"
+    app:borderWidth="0dp"
+    app:elevation="0dp"
+    app:maxImageSize="86dp"
+    app:pressedTranslationZ="0dp"
+    app:srcCompat="@drawable/floatingactionbutton"
+    app:tint="@null" />
 </FrameLayout>

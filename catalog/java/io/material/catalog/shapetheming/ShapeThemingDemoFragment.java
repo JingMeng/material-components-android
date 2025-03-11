@@ -25,16 +25,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.view.ContextThemeWrapper;
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import io.material.catalog.feature.DemoFragment;
 
-/** A base class for Shape Theming demos in the Catalog app. */
+/**
+ * A base class for Shape Theming demos in the Catalog app.
+ */
 public abstract class ShapeThemingDemoFragment extends DemoFragment {
 
   private int statusBarColor;
@@ -86,10 +91,12 @@ public abstract class ShapeThemingDemoFragment extends DemoFragment {
             .setMessage(R.string.cat_shape_theming_dialog_message)
             .setPositiveButton(R.string.cat_shape_theming_dialog_ok, null);
     materialButton.setOnClickListener(v -> materialAlertDialogBuilder.show());
+    //
     BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(wrappedContext);
     bottomSheetDialog.setContentView(R.layout.cat_shape_theming_bottomsheet_content);
     View bottomSheetInternal = bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
     BottomSheetBehavior.from(bottomSheetInternal).setPeekHeight(300);
+    //第二个按钮弹起来了sheet
     MaterialButton button = container.findViewById(R.id.material_button_2);
     button.setOnClickListener(v -> bottomSheetDialog.show());
 

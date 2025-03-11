@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2018 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,57 +13,59 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/bottom_drawer_2"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/bottom_drawer_2"
+  android:layout_width="match_parent"
+  android:layout_height="600dp"
+>
+
+  <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+    android:id="@+id/drag_handle"
     android:layout_width="match_parent"
-    android:layout_height="600dp">
+    android:layout_height="wrap_content" />
 
-    <com.google.android.material.bottomsheet.BottomSheetDragHandleView
-      android:id="@+id/drag_handle"
+  <TextView
+    android:id="@+id/bottomsheet_state"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@color/yellow_500"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="16dp"
+    android:gravity="center"
+    android:text="@string/cat_bottomsheet_state_collapsed"
+    android:textSize="20sp" />
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/bottomsheet_textinputlayout"
+    android:layout_width="@dimen/material_textinput_default_width"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/bottomsheet_state"
+    android:layout_centerHorizontal="true"
+    android:layout_gravity="center_horizontal"
+    android:layout_margin="16dp"
+    android:hint="@string/cat_bottomsheet_textfield_label">
+
+    <com.google.android.material.textfield.TextInputEditText
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"/>
+      android:layout_height="wrap_content" />
+  </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/bottomsheet_state"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:text="@string/cat_bottomsheet_state_collapsed"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"/>
+  <Button
+    android:id="@+id/cat_bottomsheet_modal_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/bottomsheet_textinputlayout"
+    android:layout_centerHorizontal="true"
+    android:text="@string/cat_bottomsheet_button_label_enabled" />
 
-    <com.google.android.material.textfield.TextInputLayout
-      android:id="@+id/bottomsheet_textinputlayout"
-      android:layout_width="@dimen/material_textinput_default_width"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/bottomsheet_state"
-      android:layout_centerHorizontal="true"
-      android:layout_margin="16dp"
-      android:layout_gravity="center_horizontal"
-      android:hint="@string/cat_bottomsheet_textfield_label">
-      <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/cat_bottomsheet_modal_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/bottomsheet_textinputlayout"
-        android:layout_centerHorizontal="true"
-        android:text="@string/cat_bottomsheet_button_label_enabled"/>
-
-    <com.google.android.material.materialswitch.MaterialSwitch
-        android:id="@+id/cat_bottomsheet_modal_enabled_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/cat_bottomsheet_modal_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="@string/cat_bottomsheet_button_label_enabled"
-        android:checked="true"/>
+  <com.google.android.material.materialswitch.MaterialSwitch
+    android:id="@+id/cat_bottomsheet_modal_enabled_switch"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/cat_bottomsheet_modal_button"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="16dp"
+    android:checked="true"
+    android:text="@string/cat_bottomsheet_button_label_enabled" />
 
 </RelativeLayout>

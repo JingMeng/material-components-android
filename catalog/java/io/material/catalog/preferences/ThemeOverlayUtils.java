@@ -18,16 +18,21 @@ package io.material.catalog.preferences;
 
 import android.app.Activity;
 import android.util.SparseIntArray;
+
 import androidx.annotation.IdRes;
 import androidx.annotation.StyleRes;
+
 import com.google.android.material.color.ThemeUtils;
 
-/** Utils for theme themeOverlays. */
+/**
+ * Utils for theme themeOverlays.
+ */
 public class ThemeOverlayUtils {
 
   public static final int NO_THEME_OVERLAY = 0;
 
-  private ThemeOverlayUtils() { }
+  private ThemeOverlayUtils() {
+  }
 
   private static final SparseIntArray themeOverlays = new SparseIntArray();
 
@@ -54,7 +59,9 @@ public class ThemeOverlayUtils {
 
   @SuppressWarnings("RestrictTo")
   public static void applyThemeOverlays(Activity activity) {
+
     for (int i = 0; i < themeOverlays.size(); ++i) {
+//      就是这里修改的主题的，这个数据影响的太大，是不是可以之应用到 sheet上呢
       ThemeUtils.applyThemeOverlay(activity, themeOverlays.valueAt(i));
     }
   }

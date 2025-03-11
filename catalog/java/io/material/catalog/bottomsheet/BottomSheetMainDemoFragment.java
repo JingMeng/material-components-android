@@ -19,6 +19,7 @@ package io.material.catalog.bottomsheet;
 import io.material.catalog.R;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -100,6 +101,8 @@ public class BottomSheetMainDemoFragment extends DemoFragment {
 
     // Set up BottomSheetDialog
     bottomSheetDialog = new BottomSheetDialog(requireContext());
+
+    //2. 这个才是实际的view加载的区域-----需要追踪一下
     bottomSheetDialog.setContentView(R.layout.cat_bottomsheet_content);
     // Opt in to perform swipe to dismiss animation when dismissing bottom sheet dialog.
     bottomSheetDialog.setDismissWithAnimation(true);
@@ -111,6 +114,8 @@ public class BottomSheetMainDemoFragment extends DemoFragment {
     button.setOnClickListener(
         v -> {
           bottomSheetDialog.show();
+          //1. 添加了一个debug的操作=============在创建之后会崩溃，考虑一下是否必须在show之后
+          bottomSheetDialog.getContainer().setBackgroundColor(Color.RED);
           bottomSheetDialog.setTitle(getText(R.string.cat_bottomsheet_title));
           Button button0 = bottomSheetInternal.findViewById(R.id.cat_bottomsheet_modal_button);
           button0.setOnClickListener(
