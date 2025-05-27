@@ -115,7 +115,7 @@ public class BottomSheetMainDemoFragment extends DemoFragment {
         v -> {
           bottomSheetDialog.show();
           //1. 添加了一个debug的操作=============在创建之后会崩溃，考虑一下是否必须在show之后
-          bottomSheetDialog.getContainer().setBackgroundColor(Color.RED);
+//          bottomSheetDialog.getContainer().setBackgroundColor(Color.RED);
           bottomSheetDialog.setTitle(getText(R.string.cat_bottomsheet_title));
           Button button0 = bottomSheetInternal.findViewById(R.id.cat_bottomsheet_modal_button);
           button0.setOnClickListener(
