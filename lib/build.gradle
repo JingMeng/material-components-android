@@ -97,6 +97,9 @@ def srcDirs = [
 ]
 
 android {
+  namespace 'com.google.android.material'
+  compileSdk 34
+  publishing { singleVariant('release') }
   sourceSets {
     main.manifest.srcFile 'java/com/google/android/material/AndroidManifest.xml'
     main.java.srcDir 'java'
@@ -121,6 +124,7 @@ android {
 
   defaultConfig {
     minSdkVersion 21
+    targetSdkVersion 34
   }
 }
 

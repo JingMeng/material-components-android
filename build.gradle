@@ -5,7 +5,7 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:7.4.2'
+    classpath 'com.android.tools.build:gradle:8.2.1'
   }
 }
 
@@ -21,7 +21,7 @@ allprojects {
 ext {
   compileSdkVersion = 34
   minSdkVersion = 21
-  targetSdkVersion = 33
+  targetSdkVersion = 34
 
   androidXVersions = [
     activity                     : '1.8.0',
@@ -193,7 +193,7 @@ subprojects {
       // since enabling coverage reports breaks the method parameter resolution in the IDE
       // debugger. Note that we avoid doing this for Android Test projects as it causes
       // crashes on Dalvik ('Class ref in pre-verified class resolved to unexpected implementation')
-      project.android.buildTypes.debug.testCoverageEnabled = !hasProperty('android.injected.invoked.from.ide')
+      project.android.buildTypes.debug.testCoverageEnabled = false
     }
 
     if (isAndroidLibrary || isAndroidApp || isAndroidTest) {
@@ -206,8 +206,8 @@ subprojects {
         // This disables the builds tools automatic vector -> PNG generation
         defaultConfig.generatedDensities = []
 
-        compileOptions.sourceCompatibility JavaVersion.VERSION_1_8
-        compileOptions.targetCompatibility JavaVersion.VERSION_1_8
+        compileOptions.sourceCompatibility JavaVersion.VERSION_11
+        compileOptions.targetCompatibility JavaVersion.VERSION_11
 
         aaptOptions.additionalParameters "--no-version-vectors"
 
